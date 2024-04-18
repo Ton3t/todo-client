@@ -13,7 +13,7 @@ function ToDo() {
           placeholder="Type here"
           className="input input-bordered w-full max-w-xs p-2 bg-slate-800"
         />
-        <input type="submit" value="Añadir" className="btn bg-slate-600 p-2 cursor-pointer" />
+        <input type="submit" value="Añadir" className="btn bg-slate-600 p-2 cursor-pointer " />
       </form>
     </div>
   );
