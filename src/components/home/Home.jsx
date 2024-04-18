@@ -3,40 +3,35 @@ import TodoForm from "../ui/TodoForm";
 import axios from "axios";
 import Todo from "./Todo";
 
-
 function Home() {
-
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
     getTodos();
-}, [todos]);
+  }, [todos]);
 
-async function getTodos() {
-  const todoRes = await axios.get("http://localhost:4567/todo");
-  setTodos(todoRes.data);
+  async function getTodos() {
+    const todoRes = await axios.get("http://localhost:4567/todo");
+    setTodos(todoRes.data);
+  }
 
-}
+  function renderTodos() {
+    let sortedTodos = [...todos];
+    sortedTodos = sortedTodos.sort((a, b) => {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
 
-function renderTodos() {
-  let sortedTodos = [...todos];
-  sortedTodos = sortedTodos.sort((a, b) => {
-    return new Date(b.createdAt) - new Date(a.createdAt);
-  });
-
-  return sortedTodos.map((todos, i) => {
-    return <Todo key={i} todo={todos} />;
-  });
-  
-}
+    return sortedTodos.map((todos, i) => {
+      return <Todo key={i} todo={todos} getTodos={getTodos} />;
+    });
+  }
 
   return (
     <div className="home w-full h-screen p-2">
-        <TodoForm />
-        {renderTodos()}
-        
+      <TodoForm />
+      {renderTodos()}
     </div>
-  )
+  );
 }
 
 export default Home;
