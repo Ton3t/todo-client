@@ -1,6 +1,8 @@
-function ButtonDelete() {
-  function deleteTodo() {
-    console.log("TO-DO BORRADO");
+import axios from "axios";
+
+function ButtonDelete({todo}) {
+  async function deleteTodo() {
+    await axios.delete(`http://localhost:4567/todo/${todo._id}`);
   }
 
   return (
