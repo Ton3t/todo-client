@@ -15,10 +15,29 @@ function Home() {
     setTodos(todoRes.data);
   }
 
-  function renderTodos() {
+  function renderTodosActivos() {
     let sortedTodos = [...todos];
     sortedTodos = sortedTodos.sort((a, b) => {
       return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+
+    sortedTodos = sortedTodos.filter((todo) => {
+      return todo.active == true;
+    });
+
+    return sortedTodos.map((todos, i) => {
+      return <Todo key={i} todo={todos} getTodos={getTodos} />;
+    });
+  }
+
+  function renderTodosAcabados() {
+    let sortedTodos = [...todos];
+    sortedTodos = sortedTodos.sort((a, b) => {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+
+    sortedTodos = sortedTodos.filter((todo) => {
+      return todo.active == false;
     });
 
     return sortedTodos.map((todos, i) => {
@@ -27,9 +46,16 @@ function Home() {
   }
 
   return (
-    <div className="home w-full h-screen p-2">
+    <div className="home w-full h-screen flex p-2">
       <TodoForm />
-      {renderTodos()}
+      <section className="mr-4">
+        <h1>TO-DO</h1>
+        {renderTodosActivos()}
+      </section>
+      <section>
+        <h1>ACABADO</h1>
+        {renderTodosAcabados()}
+      </section>
     </div>
   );
 }
