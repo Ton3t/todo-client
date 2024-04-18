@@ -49,11 +49,11 @@ function Home() {
     <div className="home w-full h-screen flex p-2">
       <TodoForm />
       <section className="mr-4">
-        <h1>TO-DO</h1>
+        <h1 className="text-center">TO-DO ACTIVOS</h1>
         {renderTodosActivos()}
       </section>
-      <section>
-        <h1>ACABADO</h1>
+      <section className="bg">
+        <h1 className="text-center">TO-DO FINALIZADO</h1>
         {renderTodosAcabados()}
       </section>
     </div>

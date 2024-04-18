@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 
 function Header() {
-  return <div className="w-full h-16">
+  return <div className="w-full mb-5">
     <Navbar />
   </div>;
 }
